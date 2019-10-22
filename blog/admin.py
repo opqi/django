@@ -1,13 +1,18 @@
 from django.contrib import admin
 from blog.models import Post, Category
 
+
+class CategoryInline(admin.TabularInline):
+    model = Post.categories.through
+
+
+@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    pass
+    inlines = (CategoryInline,)
+    exclude = ('categories',)
 
 
 class CategoryAdmin(admin.ModelAdmin):
     pass
 
-
-admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)

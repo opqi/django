@@ -1,28 +1,31 @@
 from django.db import models
+import os
 
-# Create your models here.
+
+def get_image_path(instance, filename):
+    return os.path.join('media', str(instance.id), filename)
+
+
 class Category(models.Model):
-    name = models.CharField(max_length=20, primary_key=True)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
 
-    def __unicode__(self):
-        return self.type
+    def __str__(self):
+        return self.name
 
-
-class Type(models.Model):
-    name = models.CharField(max_length=20, primary_key=True)
-
-    def __unicode__(self):
-        return self.type
 
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
+    img = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    # categories = models.ManyToManyField('Category', related_name='posts', through='Category')
-    categories = models.ForeignKey('Post', related_name='posts', on_delete=models.CASCADE)
+    categories = models.ManyToManyField('Category', related_name='posts')
     # categories = models.ManyToOneRel('Category', related_name='posts')
+    def __str__(self):
+        return self.title
+
 
 
 class Comment(models.Model):
