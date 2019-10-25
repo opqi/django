@@ -20,6 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('projects/', include("projects.urls")),
-    path('blog/', include("blog.urls")),
+    path('', include("blog.urls")),
+    # path('blog/', include("hello_world.urls")),
     # path('bootstrap_customizer/', include(bootstarp_cumtomizer_urls)),
 ]

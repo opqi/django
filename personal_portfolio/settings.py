@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 'bootstarp_customizer',
     'projects',
     'blog',
+    # 'hello_world',
 ]
 
 MIDDLEWARE = [

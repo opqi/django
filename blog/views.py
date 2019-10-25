@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from blog.models import *
 from blog.forms import *
 
@@ -35,6 +36,7 @@ def blog_detail(request, pk):
                 post=post
             )
             comment.save()
+            return HttpResponseRedirect('')
 
     comments = Comment.objects.filter(post=post)
     context = {
