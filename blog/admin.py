@@ -10,6 +10,7 @@ class CategoryInline(admin.TabularInline):
 class PostAdmin(admin.ModelAdmin):
     inlines = (CategoryInline,)
     exclude = ('categories',)
+    search_fields = ['title', 'body']
 
 
 class CategoryAdmin(admin.ModelAdmin):
