@@ -121,6 +121,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Enable email
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'laurence.server.opqi@gmail.com'
+EMAIL_HOST_PASSWORD = 'qwerty#12345'
+EMAIL_PORT = 587
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
