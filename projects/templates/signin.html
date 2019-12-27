@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block page_content %}
+  <h2>Sign in</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+      {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+        {% endif %}
+        {% for error in field.errors %}
+        {% endfor %}
+      {% endfor %}
+      <br>
+      <button type="submit">Sign in</button>
+  </form>
+{% endblock %}
